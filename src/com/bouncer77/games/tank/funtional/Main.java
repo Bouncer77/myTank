@@ -172,7 +172,7 @@ public class Main extends JPanel {
     }
 
     Main() {
-        JFrame frame = new JFrame("Dendy Tanks");
+        JFrame frame = new JFrame("MyTank");
         frame.setMinimumSize(new Dimension(BF_WIDTH, BF_HEIGHT + 44));
         frame.getContentPane().add(this);
 
