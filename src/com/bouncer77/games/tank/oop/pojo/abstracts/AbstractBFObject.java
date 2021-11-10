@@ -1,6 +1,6 @@
-package com.bouncer77.games.tank.funtional.oop.pojo.abstracts;
+package com.bouncer77.games.tank.oop.pojo.abstracts;
 
-import com.bouncer77.games.tank.funtional.oop.interfaces.Drawable;
+import com.bouncer77.games.tank.oop.interfaces.Drawable;
 
 /**
  * Created by Asus on 26.10.2020.

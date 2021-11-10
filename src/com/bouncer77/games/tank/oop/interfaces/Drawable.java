@@ -1,4 +1,4 @@
-package com.bouncer77.games.tank.funtional.oop.interfaces;
+package com.bouncer77.games.tank.oop.interfaces;
 
 import java.awt.*;
 

@@ -1,13 +1,15 @@
-package com.bouncer77.games.tank.funtional;
+package com.bouncer77.games.tank;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class Main extends JPanel {
 
-    final int BF_WIDTH = 576;
-    final int BF_HEIGHT = 576;
+    final int BF_WIDTH = 1152;
+    final int BF_HEIGHT = 1152;
 
     final int QUADRANT_SIZE = 64;
 
@@ -19,16 +21,27 @@ public class Main extends JPanel {
     final int TOP_Y = BF_HEIGHT - QUADRANT_SIZE;
     final int TOP_X = BF_WIDTH - QUADRANT_SIZE;
 
-    String[][] objects = {
-            {"B", "B", "B", "G", "G", "W", "G", "W", "B"},
-            {"G", "G", "G", "G", "G", "G", "G", "G", "B"},
-            {"B", "B", "B", "G", "G", "G", "G", "G", "B"},
-            {"B", "B", "B", "G", "G", "G", "G", "B", "B"},
-            {"B", "B", "B", "G", "G", "G", "G", "B", "B"},
-            {"G", "G", "G", "G", "G", "G", "G", "G", "B"},
-            {"B", "G", "G", "G", "G", "W", "G", "W", "B"},
-            {"G", "B", "B", "G", "G", "W", "G", "W", "B"},
-            {"B", "B", "B", "G", "G", "W", "G", "W", "B"},
+    final int MAP_SIZE = 18;
+
+    private static String[][] objects = {
+            {"B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "G", "G", "G", "G", "W", "G", "W", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"G", "B", "B", "G", "G", "W", "G", "W", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "W", "G", "W", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "B", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "G", "G", "G", "G", "G", "G", "G", "G", "G", "G", "G", "B", "B"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "G", "G", "G", "G", "W", "G", "W", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"G", "B", "B", "G", "G", "W", "G", "W", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
+            {"B", "B", "B", "G", "G", "W", "G", "W", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"},
     };
 
     // 1 - Up, 2 - Down, 3 - Left, 4 - Right
@@ -40,7 +53,7 @@ public class Main extends JPanel {
     int tankX = 256;
     int tankY = 256;
 
-    void move(int direction) throws Exception {
+    public void move(int direction) throws Exception {
         this.direction = direction;
 
         if (dontCanMove()) {
@@ -180,6 +193,10 @@ public class Main extends JPanel {
         frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        frame.setResizable(false);
+        // frame.addKeyListener(this::keyTyped);
+
         frame.setVisible(true);
     }
 
@@ -188,17 +205,20 @@ public class Main extends JPanel {
         super.paintComponent(g);
 
 
-        for (int y = 0; y < 9; y++) {
-            for (int x = 0; x < 9; x++) {
+        for (int y = 0; y < MAP_SIZE; y++) {
+            for (int x = 0; x < MAP_SIZE; x++) {
                 switch (objects[y][x]) {
                     case "B":
-                        g.setColor(new Color(246, 20, 79));
+                        g.setColor(new Color(245, 6, 6));
+                        // g.setColor(Color.RED);
                         break;
                     case "W":
-                        g.setColor(new Color(21, 172, 246));
+                        // g.setColor(new Color(21, 172, 246));
+                        g.setColor(Color.CYAN);
                         break;
                     case "G":
-                        g.setColor(new Color(244, 233, 246));
+                        // g.setColor(new Color(244, 233, 246));
+                        g.setColor(Color.GRAY);
                         break;
                 }
                 g.fillRect(x * QUADRANT_SIZE, y * QUADRANT_SIZE, QUADRANT_SIZE, QUADRANT_SIZE);
@@ -226,7 +246,6 @@ public class Main extends JPanel {
         g.setColor(Color.YELLOW);
         g.fillRect(bulletX, bulletY, 14, 14);
     }
-
 
 
 }

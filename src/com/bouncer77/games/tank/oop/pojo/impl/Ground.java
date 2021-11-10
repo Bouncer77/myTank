@@ -1,6 +1,6 @@
-package com.bouncer77.games.tank.funtional.oop.pojo.impl;
+package com.bouncer77.games.tank.oop.pojo.impl;
 
-import com.bouncer77.games.tank.funtional.oop.pojo.abstracts.AbstractBFObject;
+import com.bouncer77.games.tank.oop.pojo.abstracts.AbstractBFObject;
 
 import java.awt.*;
 

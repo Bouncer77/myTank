@@ -1,4 +1,4 @@
-package com.bouncer77.games.tank.funtional.oop;
+package com.bouncer77.games.tank.oop;
 
 import javax.swing.*;
 
