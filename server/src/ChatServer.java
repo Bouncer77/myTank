@@ -15,7 +15,9 @@ public class ChatServer implements TCPConnectionListener {
 
             while (true) {
                 try {
-                    new TCPConnection(this, serverSocket.accept()); // serverSocket.accept() - ждет новое соединение
+                    // serverSocket.accept() - объект сокета в приходящем соединении
+                    // метод accept - Ждет новое соединение
+                    new TCPConnection(this, serverSocket.accept());
                 } catch (Exception e) {
                     System.out.println("TCPConnection exception : " + e);
                 }
